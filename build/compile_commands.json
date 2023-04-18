@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/main.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/main.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/main.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/common/assert.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/assert.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/assert.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/common/memory.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/memory.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/memory.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/common/spirvParser.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/spirvParser.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/spirvParser.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/common/file.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/file.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/file.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/common/service.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/service.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common/service.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/external/stb_image.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external/stb_image.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external/stb_image.cpp"
+},
+{
+  "directory": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build",
+  "command": "/usr/bin/c++  -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/build -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/common -I/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external -g -std=c++17 -Wextra -Wall -Werror -Wpedantic -ggdb -std=gnu++17 -o CMakeFiles/Engine1.dir/src/external/tlsf.cpp.o -c /home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external/tlsf.cpp",
+  "file": "/home/solly/code/Vulkan/mastering-vulkan/EngineRemaster1/src/external/tlsf.cpp"
+}
+]
