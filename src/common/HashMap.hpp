@@ -1,8 +1,8 @@
 // clang-format on
 #pragma once
 
+#include "Allocator.hpp"
 #include "hashmap_util.hpp"
-#include "memory.hpp"
 
 namespace Sol {
 
@@ -37,6 +37,7 @@ template <typename K, typename V> struct HashMap {
   uint8_t *raw_bytes;
   Group *base_group;
   KeyValue *base_kv;
+
   // sizes
   size_t capacity = 0;
   size_t buckets_full = 0;
@@ -44,7 +45,58 @@ template <typename K, typename V> struct HashMap {
 
   Allocator *allocator;
 
+  /* Inner methods */
+  inline size_t capacity_to_buckets() {
+    size_t growth = capacity;
+    if (!checked_mul(growth, 7))
+      return UINT64_MAX;
+    return (growth / 8) - buckets_full;
+  }
+
+  inline bool rehash_and_grow() {
+    if ((UINT64_MAX >> 1) < capacity)
+      return false;
+
+    Group *old_group = base_group;
+    KeyValue *old_kv = base_kv;
+
+    capacity *= 2;
+    buckets_full = 0;
+    growth = capacity_to_buckets();
+    raw_bytes = (uint8_t *)mem_alloca(capacity + (sizeof(KeyValue) * capacity),
+                                      128, allocator);
+    base_kv = (KeyValue *)(raw_bytes + capacity);
+    base_group = (Group *)raw_bytes;
+    initEmpty();
+
+    // This algorithm may need testing for linear access optimisations
+    for (size_t i = 0; i < capacity / 2; i += 16) {
+      BitMask mask = old_group[i >> 4].isFull();
+      while (mask.mask) {
+        auto offset = mask.countTrailingZeros();
+        if (insert(old_kv[i + offset].key, old_kv[i + offset].value) ==
+            UINT64_MAX)
+          return false;
+
+        mask.mask ^= (1 << offset);
+      }
+    }
+
+    mem_free(old_group, allocator);
+    return true;
+  }
+  inline void update_sizes_on_insert() {
+    --growth;
+    ++buckets_full;
+  }
+
   /* General API */
+  inline void initEmpty() {
+    for (size_t i = 0; i < (capacity >> 4); ++i) {
+      base_group[i].ctrl = _mm_set1_epi8(Group::EMPTY);
+    }
+  }
+
   inline HashMap(size_t cap, Allocator *cator) {
     allocator = cator;
     next_pow_2(cap);
@@ -52,36 +104,23 @@ template <typename K, typename V> struct HashMap {
     growth = capacity_to_buckets();
 
     raw_bytes =
-        (uint8_t *)rallocaa(cap + (sizeof(KeyValue) * cap), allocator, 128);
-    // raw_bytes = (uint8_t *)malloc(cap + (sizeof(KeyValue) * cap));
+        (uint8_t *)mem_alloca(cap + (sizeof(KeyValue) * cap), 128, allocator);
     base_group = (Group *)raw_bytes;
     base_kv = (KeyValue *)(raw_bytes + cap);
     initEmpty();
   }
-  inline void shutdown() { rfree(raw_bytes, allocator); }
 
-  /* Inner methods */
-  inline void initEmpty() {
-    for (size_t i = 0; i < (capacity >> 4); ++i) {
-      base_group[i].ctrl = _mm_set1_epi8(Group::EMPTY);
-    }
+  inline void shutdown() {
+    mem_free(raw_bytes, allocator);
+    capacity = 0;
+    buckets_full = 0;
+    growth = 0;
   }
-  inline size_t capacity_to_buckets() {
-    size_t growth = capacity;
-    if (!checked_mul(growth, 7))
-      return UINT64_MAX;
-    return (growth / 8) - buckets_full;
-  }
-  inline void update_sizes_on_insert() {
-    --growth;
-    ++buckets_full;
-  }
+
   inline size_t insert(K &key, V &value) {
-#if 1
     if (growth == 0)
       if (!rehash_and_grow())
         return UINT64_MAX;
-#endif
 
     auto hash = calculateHash(key);
     auto primary_index = hash % capacity;
@@ -142,19 +181,20 @@ template <typename K, typename V> struct HashMap {
     }
     return nullptr;
   } // fn get
-  inline bool rehash_and_grow() {
-    if ((UINT64_MAX >> 1) < capacity)
+
+  inline bool rehash_and_grow(size_t new_cap) {
+    if ((UINT64_MAX >> 1) < new_cap || new_cap < capacity)
       return false;
+    next_pow_2(new_cap);
 
     Group *old_group = base_group;
     KeyValue *old_kv = base_kv;
 
-    capacity *= 2;
+    capacity = new_cap;
     buckets_full = 0;
     growth = capacity_to_buckets();
-    raw_bytes = (uint8_t *)rallocaa(capacity + (sizeof(KeyValue) * capacity),
-                                    allocator, 128);
-    // raw_bytes = (uint8_t *)malloc(capacity + (sizeof(KeyValue) * capacity));
+    raw_bytes = (uint8_t *)mem_alloca(capacity + (sizeof(KeyValue) * capacity),
+                                      128, allocator);
     base_kv = (KeyValue *)(raw_bytes + capacity);
     base_group = (Group *)raw_bytes;
     initEmpty();
@@ -172,7 +212,7 @@ template <typename K, typename V> struct HashMap {
       }
     }
 
-    rfree(old_group, allocator);
+    mem_free(old_group, allocator);
     return true;
   }
 };

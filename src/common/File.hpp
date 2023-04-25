@@ -1,7 +1,9 @@
 #pragma once
 
-#include "memory.hpp"
+#include "Allocator.hpp"
 #include <cstddef>
+
+using namespace Sol;
 
 // this will free the given pointer before it returns false...
 char *readFile(size_t *dataSize, const char *fileName, Allocator *allocator);

@@ -3,11 +3,9 @@
 
 #include <cstdlib>
 #include <cstdint>
+#include <cstring>
 
 #include "tlsf.h"
-
-void mem_cpy(void* to, void* from, size_t size);
-void mem_cpy(char* to, const char* from, size_t size);
 
 namespace Sol {
 
@@ -61,10 +59,13 @@ struct MemoryService {
   void shutdown();
 };
 
+inline void mem_cpy(void* to, void* from, size_t size);
+
 #if 1
+#define mem_cpy(to, from, size) (memcpy(to, from, size))
 #define mem_alloca(size, alignment, allocator) ((allocator)->allocate(size, alignment))
 #define mem_alloc(size, allocator) ((allocator)->allocate(size, 1))
-#define mem_realloc(size, ptr, allocator) ((allocator)->(reallocate(size, ptr))
+#define mem_realloc(size, ptr, allocator) ((allocator)->reallocate(size, ptr))
 #define mem_free(ptr, allocator) ((allocator)->deallocate(ptr))
 #endif
 

@@ -1,10 +1,12 @@
-#include "file.hpp"
-#include "memory.hpp"
+#include "File.hpp"
+#include "Allocator.hpp"
 #include <cstddef>
 #include <fstream>
 #include <iostream>
 
-char *readFile(size_t *dataSize, const char *fileName, Allocator *allocator) {
+using namespace Sol;
+
+char *readFile(size_t &dataSize, const char *fileName, Allocator *allocator) {
   std::ifstream file(fileName, std::ios::binary | std::ios::ate);
 
   if (!file.is_open()) {
@@ -12,10 +14,10 @@ char *readFile(size_t *dataSize, const char *fileName, Allocator *allocator) {
     return nullptr;
   }
 
-  *dataSize = (size_t)file.tellg();
-  char *data = (char *)ralloca(*dataSize, allocator);
+  dataSize = (size_t)file.tellg();
+  char *data = (char *)mem_alloc(dataSize, allocator);
   file.seekg(0);
-  file.read(data, *dataSize);
+  file.read(data, dataSize);
   file.close();
 
   if (file.bad()) {
@@ -31,7 +33,7 @@ char *readFile(size_t *dataSize, const char *fileName, Allocator *allocator) {
   return data;
 }
 
-bool writeFile(const char *data, size_t dataSize, const char *fileName) {
+bool writeFile(const char *data, size_t &dataSize, const char *fileName) {
   std::ofstream file(fileName, std::ios::binary);
 
   if (!file.is_open()) {
@@ -54,7 +56,7 @@ bool writeFile(const char *data, size_t dataSize, const char *fileName) {
   return true;
 }
 
-bool getFileSize(size_t *dataSize, const char *fileName) {
+bool getFileSize(size_t &dataSize, const char *fileName) {
   std::ifstream file(fileName, std::ios::ate);
   if (!file.is_open()) {
     std::cout << fileName
@@ -62,6 +64,6 @@ bool getFileSize(size_t *dataSize, const char *fileName) {
     return false;
   }
 
-  *dataSize = file.tellg();
+  dataSize = file.tellg();
   return true;
 }

@@ -1,9 +1,8 @@
-#include <fstream>
 #include <iostream>
 #include <spirv_cross/spirv.h>
 #include <vulkan/vulkan.hpp>
 
-#include "spirvParser.hpp"
+#include "SpirvParser.hpp"
 
 bool parseSpv(uint32_t *data, size_t dataSize) {
 
@@ -220,7 +219,7 @@ bool parseSpv(uint32_t *data, size_t dataSize) {
       Id &id = ids[idIndex];
       id.opCode = opCode;
       id.typeIndex = data[wordIndex + 1];
-      id.value =
+      id.quiv =
           data[wordIndex +
                3]; // NOTE: this assumes 32bit wide max on all constants...
       break;

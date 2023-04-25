@@ -30,18 +30,18 @@ set(SOURCE_FILES
 
     src/main.cpp 
 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/assert.hpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/assert.cpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/memory.hpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/memory.cpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/spirvParser.hpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/spirvParser.cpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/file.hpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/file.cpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/service.hpp" 
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/service.cpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/Allocator.hpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/Allocator.cpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/File.hpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/File.cpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/String.hpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/String.cpp" 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/common/HashMap.hpp" 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/common/hashmap_util.hpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/common/Vec.hpp" 
+
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/vulk/SpirvParser.hpp" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/vulk/SpirvParser.cpp" 
 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/external/stb_image.cpp" 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/external/stb_image.h" 

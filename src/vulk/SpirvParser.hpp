@@ -1,6 +1,5 @@
 #pragma once
 
-#include "file.hpp"
 #include <iostream>
 #include <spirv_cross/spirv.h>
 #include <vulkan/vulkan.hpp>
@@ -34,7 +33,7 @@ struct Id {
   // array, vector, matrix
   uint32_t typeIndex;
   uint32_t length;
-  uint32_t value; // constants
+  uint32_t quiv; // constants
   // structs
   char *name;
   std::vector<Member> members;

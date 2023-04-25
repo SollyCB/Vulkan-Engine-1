@@ -8,14 +8,7 @@
 //#define NDEBUG
 #include <assert.h>
 
-using namespace Sol;
-
-void mem_cpy(void* to, void* from, size_t size) {
-  memcpy(to, from, size);
-}
-void mem_cpy(char* to, const char* from, size_t size) {
-  memcpy(to, from, size);
-}
+namespace Sol {
 
 /* MemoryService */
 static MemoryService GlobalMemoryService;
@@ -72,4 +65,4 @@ void HeapAllocator::deallocate(void* ptr) {
   tlsf_free(handle, ptr);
 } 
 
-
+} // namespace Sol
